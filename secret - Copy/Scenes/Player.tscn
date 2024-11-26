@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dxd3pxvb0ied0"]
+[gd_scene load_steps=12 format=3 uid="uid://dxd3pxvb0ied0"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_x2hcb"]
 [ext_resource type="Texture2D" uid="uid://dug7oj2so80na" path="res://Sprites/Player.png" id="2_4qxfr"]
+[ext_resource type="Texture2D" uid="uid://bkdmjpreqpase" path="res://Sprites/eye_closed.png" id="3_qnfa3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0cvk"]
 size = Vector2(7, 8)
@@ -116,14 +117,23 @@ position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_4j3ap")
 debug_color = Color(0, 0.419608, 0.352941, 0.74902)
 
-[node name="VisibleForWolf" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 8
+[node name="VisibleForWolf" type="Area2D" parent="." groups=["Player"]]
+collision_layer = 16
+collision_mask = 16
+input_pickable = false
+priority = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisibleForWolf"]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_klovj")
 debug_color = Color(0.556863, 0.247059, 0.215686, 0.47451)
 
+[node name="Eye_Closed" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -17)
+texture = ExtResource("3_qnfa3")
+
+[connection signal="area_shape_entered" from="SurroundingDetector" to="." method="_on_surrounding_detector_area_shape_entered"]
+[connection signal="area_shape_exited" from="SurroundingDetector" to="." method="_on_surrounding_detector_area_shape_exited"]
 [connection signal="body_entered" from="SurroundingDetector" to="." method="_on_surrounding_detector_body_entered"]
 [connection signal="body_exited" from="SurroundingDetector" to="." method="_on_surrounding_detector_body_exited"]

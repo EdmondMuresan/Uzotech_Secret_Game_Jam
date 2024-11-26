@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cq6n2wfi8djo0"]
+[gd_scene load_steps=14 format=3 uid="uid://cq6n2wfi8djo0"]
 
 [ext_resource type="Script" path="res://Scenes/wolf.gd" id="1_aclsw"]
 [ext_resource type="Texture2D" uid="uid://b4x8s122ifv5y" path="res://Sprites/GuardDog/Char_004.png" id="1_ymctk"]
+[ext_resource type="Texture2D" uid="uid://7rjjau7nquqb" path="res://Sprites/DetectionCone.png" id="3_50epq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pncur"]
 size = Vector2(12, 16)
@@ -134,10 +135,32 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bih8r"]
 size = Vector2(76, 23)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyoxl"]
+atlas = ExtResource("3_50epq")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4kti"]
+atlas = ExtResource("3_50epq")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ra6ul"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyoxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4kti")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Wolf" type="CharacterBody2D"]
 z_as_relative = false
-collision_layer = 8
-collision_mask = 66
+collision_layer = 16
+collision_mask = 80
 script = ExtResource("1_aclsw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -160,13 +183,27 @@ one_shot = true
 autostart = true
 
 [node name="Detection" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+z_as_relative = false
+collision_layer = 16
+collision_mask = 16
+input_pickable = false
+monitorable = false
+priority = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
 position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_bih8r")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Detection/CollisionShape2D"]
+position = Vector2(0, 1.5)
+scale = Vector2(9.5, 1)
+sprite_frames = SubResource("SpriteFrames_ra6ul")
+autoplay = "default"
+frame = 1
+frame_progress = 0.653451
+
 [connection signal="timeout" from="Idle_timer" to="." method="_on_idle_timer_timeout"]
-[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
-[connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]
+[connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
+[connection signal="area_exited" from="Detection" to="." method="_on_detection_area_exited"]
+[connection signal="area_shape_entered" from="Detection" to="." method="_on_detection_area_shape_entered"]
+[connection signal="area_shape_exited" from="Detection" to="." method="_on_detection_area_shape_exited"]

@@ -1,14 +1,15 @@
 extends Node2D
 
-@onready var animated_sprite_2d = $Camera2D/TextureRect
 @onready var timer: Timer = $Timer
-
+@export var player:CharacterBody2D
+@export var animation:TextureRect
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
-	animated_sprite_2d.visible=false
+	animation.visible=false
 func death_animation():
-	animated_sprite_2d.visible=true
-	timer.start(1.5)
+	timer.start(2)
+	animation.visible=true
 func _on_timer_timeout() -> void:
-	get_tree().change_scene_to_file("res://Scenes/main_door.tscn")
+		player.queue_free()
+		get_tree().change_scene_to_file("res://Scenes/main_door.tscn")
+	

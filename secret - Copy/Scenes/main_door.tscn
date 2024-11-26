@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://jjowbd2gwhvk"]
+[gd_scene load_steps=18 format=3 uid="uid://jjowbd2gwhvk"]
 
 [ext_resource type="Texture2D" uid="uid://d35nnt4w03kqp" path="res://Sprites/Tileset.png" id="1_jclwg"]
 [ext_resource type="Script" path="res://Scenes/main_door.gd" id="1_lpjhj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bi8c0gpo0tpj1" path="res://Sprites/Symbolst.png" id="3_51vof"]
 [ext_resource type="Script" path="res://Scenes/camera_2d.gd" id="5_pww4l"]
 [ext_resource type="PackedScene" uid="uid://bgywmg3h07ttr" path="res://Scenes/DoorLock.tscn" id="5_vyr75"]
+[ext_resource type="PackedScene" uid="uid://bklnpe1sr03hr" path="res://Scenes/Wolf_ending.tscn" id="6_uqdgs"]
 [ext_resource type="PackedScene" uid="uid://dpqhp4xkkhld2" path="res://Scenes/sneak.tscn" id="7_an2e4"]
 [ext_resource type="PackedScene" uid="uid://by12wbj3rc5bu" path="res://Scenes/platformer.tscn" id="8_vbmum"]
 
@@ -359,8 +360,27 @@ offset_right = -31.0
 offset_bottom = -36.0
 scale = Vector2(0.479998, 0.479998)
 
-[node name="Sneak" parent="." instance=ExtResource("7_an2e4")]
+[node name="TextureRect2" parent="Camera2D" instance=ExtResource("6_uqdgs")]
+visible = false
+offset_left = -176.0
+offset_top = -98.0
+offset_right = 174.0
+offset_bottom = 106.0
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/TextureRect2"]
+z_index = 11
+z_as_relative = false
+layout_mode = 0
+offset_left = -72.0
+offset_top = -62.0
+offset_right = 416.0
+offset_bottom = 267.0
+color = Color(0.0823529, 0.376471, 0.392157, 1)
+
+[node name="Sneak" parent="." node_paths=PackedStringArray("player", "animation") instance=ExtResource("7_an2e4")]
 position = Vector2(65, 176)
+player = NodePath("../Player")
+animation = NodePath("../Camera2D/TextureRect2")
 
 [node name="Player" parent="." instance=ExtResource("2_fp5ig")]
 position = Vector2(149, 311)
@@ -370,7 +390,7 @@ JUMP_VELOCITY = -300.0
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
 
-[node name="Platformer" parent="." instance=ExtResource("8_vbmum")]
+[node name="Platformer" parent="." groups=["BushVisibility"] instance=ExtResource("8_vbmum")]
 position = Vector2(1143, 127)
 
 [connection signal="body_entered" from="Lock" to="." method="_on_lock_body_entered"]

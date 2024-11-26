@@ -10,6 +10,8 @@ var near_ladder:=false
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var visible_for_wolf: Area2D = $VisibleForWolf
+@onready var eye_closed: Sprite2D = $Eye_Closed
 
 
 func _physics_process(delta: float) -> void:
@@ -40,21 +42,30 @@ func _physics_process(delta: float) -> void:
 			var ladder_direction= Input.get_axis("up","down")
 			if ladder_direction:
 				velocity.y=ladder_direction*SPEED
-		move_and_slide()
+		
 	else:
 		animation_player.play("RESET")
 	
-
+	move_and_slide()
 
 func _on_surrounding_detector_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Ladder"):
 		print("I am no longer near a ladder")
 		near_ladder=false
-	if body.is_in_group("Bush"):
-		print("I am not near a bush")
 func _on_surrounding_detector_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Ladder"):
 		print("I am near a ladder")
 		near_ladder=true
-	if body.is_in_group("Bush"):
-		print("I am near a bush")
+
+
+func _on_surrounding_detector_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	if area.is_in_group("Bush"):
+		print("I am in the bush")
+		visible_for_wolf.set_deferred("monitorable",false)
+		eye_closed.visible=true
+
+func _on_surrounding_detector_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	if area.is_in_group("Bush"):
+		print("I am not in the bush")
+		visible_for_wolf.set_deferred("monitorable",true)
+		eye_closed.visible=false
