@@ -1,7 +1,7 @@
 extends Camera2D
 
 # The base zoom level that works for your game
-const BASE_ZOOM = 12.0
+const BASE_ZOOM = 6.0
 # The target resolution width to scale from
 const TARGET_WIDTH = 1920.0
 

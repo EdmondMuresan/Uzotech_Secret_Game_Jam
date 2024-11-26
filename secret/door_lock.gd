@@ -20,6 +20,7 @@ const _6 = preload("res://Sprites/symbols/6.png")
 const _7 = preload("res://Sprites/symbols/7.png")
 const _8 = preload("res://Sprites/symbols/8.png")
 const _9 = preload("res://Sprites/symbols/9.png")
+
 var symbols=[]
 var current_slot
 var answer
@@ -36,7 +37,7 @@ func _ready() -> void:
 				combination.append(element)
 	answer=combination.pick_random()
 	print(answer)
-	
+	Global.code=answer
 	symbols.append(_0)
 	symbols.append(_1)
 	symbols.append(_2)
@@ -53,9 +54,6 @@ func _ready() -> void:
 	current_slot=slot_1
 	texture_rect.texture=DOORCODE_1
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 
 func _on_up_pressed() -> void:
 	print(current_slot)

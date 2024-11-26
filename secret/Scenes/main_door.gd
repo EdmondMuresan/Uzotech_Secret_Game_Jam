@@ -8,13 +8,12 @@ var near=false
 func _ready() -> void:
 	animated_sprite_2d.visible=false
 	control.visible=false
+	print("The global code is the following: "+ str(Global.code))
 func _on_lock_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		animated_sprite_2d.visible = true
 		print("Player entered the lock area.")
 		near=true
-		  
-
 func _on_lock_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		animated_sprite_2d.visible=false
@@ -32,4 +31,3 @@ func _unhandled_input(event: InputEvent) -> void:
 				node_2d.can_move=true
 				control.visible = false
 				print("Control hidden.")
-	
