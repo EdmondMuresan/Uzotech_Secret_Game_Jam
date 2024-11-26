@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@export var code_part:int=1
+@export var code_part:int=2
 const _0 = preload("res://Sprites/symbols/0.png")
 const _1 = preload("res://Sprites/symbols/1.png")
 const _2 = preload("res://Sprites/symbols/2.png")
@@ -24,8 +24,8 @@ func _ready() -> void:
 	symbols.append(_7)
 	symbols.append(_8)
 	symbols.append(_9)
-	code = 56
-	print("the code is"+str(code))
+	code = Global.code
+	print("the code is "+str(code))
 	match code_part:
 		1:
 			if code<100:

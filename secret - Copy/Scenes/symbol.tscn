@@ -6,7 +6,6 @@
 [node name="Symbol" type="Sprite2D"]
 texture = ExtResource("1_sot3t")
 script = ExtResource("1_nq5x3")
-code_part = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(7.655, 7.655)
