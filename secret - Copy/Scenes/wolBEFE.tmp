@@ -1,0 +1,114 @@
+[gd_scene load_steps=10 format=3 uid="uid://cq6n2wfi8djo0"]
+
+[ext_resource type="Script" path="res://Scenes/wolf.gd" id="1_aclsw"]
+[ext_resource type="Texture2D" uid="uid://b4x8s122ifv5y" path="res://Sprites/GuardDog/Char_004.png" id="1_ymctk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pncur"]
+size = Vector2(10, 16)
+
+[sub_resource type="Animation" id="Animation_36ldd"]
+resource_name = "Idle"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_osqqu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_kpp05"]
+resource_name = "move"
+length = 1.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_gvnm2"]
+resource_name = "Triggered"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8x78x"]
+_data = {
+"Idle": SubResource("Animation_36ldd"),
+"RESET": SubResource("Animation_osqqu"),
+"Triggered": SubResource("Animation_gvnm2"),
+"move": SubResource("Animation_kpp05")
+}
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ib17s"]
+b = Vector2(102, 0)
+
+[node name="Wolf" type="CharacterBody2D"]
+script = ExtResource("1_aclsw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_pncur")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ymctk")
+hframes = 4
+vframes = 3
+frame = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8x78x")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("SegmentShape2D_ib17s")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
