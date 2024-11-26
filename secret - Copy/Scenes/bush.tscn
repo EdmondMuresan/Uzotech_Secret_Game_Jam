@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq527gcqm2tx"]
+
+[ext_resource type="Texture2D" uid="uid://d35nnt4w03kqp" path="res://Sprites/Tileset.png" id="1_uh8v2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofpjo"]
+size = Vector2(11, 12)
+
+[node name="Bush" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -2)
+shape = SubResource("RectangleShape2D_ofpjo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_uh8v2")
+region_enabled = true
+region_rect = Rect2(49, 112, 16, 17)

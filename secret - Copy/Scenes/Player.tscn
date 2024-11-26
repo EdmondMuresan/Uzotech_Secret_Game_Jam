@@ -1,0 +1,128 @@
+[gd_scene load_steps=11 format=3 uid="uid://dxd3pxvb0ied0"]
+
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_x2hcb"]
+[ext_resource type="Texture2D" uid="uid://dug7oj2so80na" path="res://Sprites/Player.png" id="2_4qxfr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r0cvk"]
+size = Vector2(7, 8)
+
+[sub_resource type="Animation" id="Animation_yweqh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_dj7ii"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [12, 7]
+}
+
+[sub_resource type="Animation" id="Animation_3cxmi"]
+resource_name = "jump"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_tnhbh"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mvrie"]
+_data = {
+"RESET": SubResource("Animation_yweqh"),
+"idle": SubResource("Animation_dj7ii"),
+"jump": SubResource("Animation_3cxmi"),
+"run": SubResource("Animation_tnhbh")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4j3ap"]
+size = Vector2(3, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_klovj"]
+size = Vector2(7, 8)
+
+[node name="Node2D" type="CharacterBody2D" groups=["Player"]]
+z_index = 5
+z_as_relative = false
+script = ExtResource("1_x2hcb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_r0cvk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4qxfr")
+hframes = 6
+vframes = 3
+frame = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mvrie")
+}
+autoplay = "idle"
+
+[node name="SurroundingDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 68
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SurroundingDetector"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_4j3ap")
+debug_color = Color(0, 0.419608, 0.352941, 0.74902)
+
+[node name="VisibleForWolf" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisibleForWolf"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_klovj")
+debug_color = Color(0.556863, 0.247059, 0.215686, 0.47451)
+
+[connection signal="body_entered" from="SurroundingDetector" to="." method="_on_surrounding_detector_body_entered"]
+[connection signal="body_exited" from="SurroundingDetector" to="." method="_on_surrounding_detector_body_exited"]
