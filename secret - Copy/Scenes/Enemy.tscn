@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dnngo01qchd8e"]
+[gd_scene load_steps=9 format=3 uid="uid://dnngo01qchd8e"]
 
-[ext_resource type="Texture2D" uid="uid://cutcexmta2r8e" path="res://Sprites/Enemies.png" id="1_fkdvw"]
-[ext_resource type="Script" path="res://Scenes/enemy.gd" id="1_wltke"]
-[ext_resource type="Script" path="res://Scenes/killzone.gd" id="2_xo24p"]
+[ext_resource type="Texture2D" uid="uid://cutcexmta2r8e" path="res://Sprites/Enemies/Enemies.png" id="1_fkdvw"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_wltke"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l0uwl"]
 atlas = ExtResource("1_fkdvw")
@@ -53,11 +52,6 @@ frame_progress = 0.35073
 
 [node name="Killzone" type="Area2D" parent="."]
 collision_mask = 2
-script = ExtResource("2_xo24p")
-
-[node name="Timer" type="Timer" parent="Killzone"]
-wait_time = 0.6
-one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 position = Vector2(0, 1)
@@ -69,5 +63,4 @@ target_position = Vector2(11, 0)
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 target_position = Vector2(-12, 0)
 
-[connection signal="body_entered" from="Killzone" to="Killzone" method="_on_body_entered"]
-[connection signal="timeout" from="Killzone/Timer" to="Killzone" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Killzone" to="." method="_on_killzone_body_entered"]

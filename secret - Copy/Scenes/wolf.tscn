@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://cq6n2wfi8djo0"]
 
-[ext_resource type="Script" path="res://Scenes/wolf.gd" id="1_aclsw"]
+[ext_resource type="Script" path="res://Scripts/wolf.gd" id="1_aclsw"]
 [ext_resource type="Texture2D" uid="uid://b4x8s122ifv5y" path="res://Sprites/GuardDog/Char_004.png" id="1_ymctk"]
-[ext_resource type="Texture2D" uid="uid://7rjjau7nquqb" path="res://Sprites/DetectionCone.png" id="3_50epq"]
+[ext_resource type="Texture2D" uid="uid://7rjjau7nquqb" path="res://Sprites/GuardDog/DetectionCone.png" id="3_50epq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pncur"]
 size = Vector2(12, 16)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://by12wbj3rc5bu"]
+[gd_scene load_steps=14 format=3 uid="uid://by12wbj3rc5bu"]
 
 [ext_resource type="TileSet" uid="uid://cbkjxmd71juvr" path="res://Scenes/main_tile_set.tres" id="1_81s6m"]
+[ext_resource type="Script" path="res://Scenes/platformer.gd" id="1_n6ps3"]
 [ext_resource type="PackedScene" uid="uid://dorypd20amuyu" path="res://Scenes/platform.tscn" id="2_q8flv"]
 [ext_resource type="PackedScene" uid="uid://7uu55mit0ytx" path="res://Scenes/symbol.tscn" id="3_enhk4"]
 [ext_resource type="PackedScene" uid="uid://dnngo01qchd8e" path="res://Scenes/Enemy.tscn" id="4_mf2yi"]
@@ -106,6 +107,7 @@ _data = {
 }
 
 [node name="Platformer" type="Node2D"]
+script = ExtResource("1_n6ps3")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-4, 1)

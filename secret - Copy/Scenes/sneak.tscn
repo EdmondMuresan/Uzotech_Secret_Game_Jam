@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://dpqhp4xkkhld2"]
 
-[ext_resource type="Texture2D" uid="uid://d35nnt4w03kqp" path="res://Sprites/Tileset.png" id="1_1q53y"]
-[ext_resource type="Script" path="res://Scenes/sneak.gd" id="1_hu2y6"]
-[ext_resource type="Texture2D" uid="uid://bi8c0gpo0tpj1" path="res://Sprites/Symbolst.png" id="2_3a7ej"]
-[ext_resource type="Texture2D" uid="uid://do6c6njpn726c" path="res://Sprites/frame.png" id="3_27nft"]
+[ext_resource type="Texture2D" uid="uid://d35nnt4w03kqp" path="res://Sprites/Tiles_and_ui/Tileset.png" id="1_1q53y"]
+[ext_resource type="Script" path="res://Scripts/sneak.gd" id="1_hu2y6"]
+[ext_resource type="Texture2D" uid="uid://bi8c0gpo0tpj1" path="res://Sprites/Tiles_and_ui/Symbolst.png" id="2_3a7ej"]
+[ext_resource type="Texture2D" uid="uid://do6c6njpn726c" path="res://Sprites/Tiles_and_ui/frame.png" id="3_27nft"]
 [ext_resource type="PackedScene" uid="uid://cq6n2wfi8djo0" path="res://Scenes/wolf.tscn" id="4_8us3e"]
 [ext_resource type="Texture2D" uid="uid://damwvrais6413" path="res://Sprites/symbols/5.png" id="5_ly1xj"]
 
@@ -435,8 +435,6 @@ my_parent = NodePath("..")
 position = Vector2(343, 248)
 my_parent = NodePath("..")
 
-[node name="Timer" type="Timer" parent="."]
-
 [node name="Bush" type="Area2D" parent="." groups=["Bush"]]
 position = Vector2(310, 316)
 collision_layer = 4
@@ -506,5 +504,3 @@ shape = SubResource("RectangleShape2D_ofpjo")
 texture = ExtResource("1_1q53y")
 region_enabled = true
 region_rect = Rect2(49, 112, 16, 17)
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://7nasmdpjpl6r"]
 
-[ext_resource type="Texture2D" uid="uid://d35nnt4w03kqp" path="res://Sprites/Tileset.png" id="1_kwd2i"]
-[ext_resource type="Texture2D" uid="uid://bi8c0gpo0tpj1" path="res://Sprites/Symbolst.png" id="2_eo3in"]
-[ext_resource type="Script" path="res://Scenes/node.gd" id="3_6n0x7"]
+[ext_resource type="Texture2D" uid="uid://d35nnt4w03kqp" path="res://Sprites/Tiles_and_ui/Tileset.png" id="1_kwd2i"]
+[ext_resource type="Texture2D" uid="uid://bi8c0gpo0tpj1" path="res://Sprites/Tiles_and_ui/Symbolst.png" id="2_eo3in"]
+[ext_resource type="Script" path="res://Scripts/node.gd" id="3_6n0x7"]
 [ext_resource type="Texture2D" uid="uid://2j72yuqv6rcf" path="res://Sprites/symbols/0.png" id="3_bplev"]
-[ext_resource type="Texture2D" uid="uid://do6c6njpn726c" path="res://Sprites/frame.png" id="5_h15nq"]
+[ext_resource type="Texture2D" uid="uid://do6c6njpn726c" path="res://Sprites/Tiles_and_ui/frame.png" id="5_h15nq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lob3w"]
 texture = ExtResource("1_kwd2i")

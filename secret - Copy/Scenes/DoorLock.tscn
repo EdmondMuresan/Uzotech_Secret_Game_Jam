@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://bgywmg3h07ttr"]
+[gd_scene load_steps=13 format=3 uid="uid://bgywmg3h07ttr"]
 
-[ext_resource type="Texture2D" uid="uid://dekkb7q2gonwy" path="res://Sprites/doorcode.png" id="1_0aj2d"]
-[ext_resource type="Script" path="res://door_lock.gd" id="1_i8bv3"]
+[ext_resource type="Script" path="res://Scripts/door_lock.gd" id="1_i8bv3"]
 [ext_resource type="Texture2D" uid="uid://2j72yuqv6rcf" path="res://Sprites/symbols/0.png" id="2_u2kbd"]
 [ext_resource type="Texture2D" uid="uid://xe1fnuri4jjq" path="res://Sprites/buttons/up.png" id="3_8luev"]
 [ext_resource type="Texture2D" uid="uid://bdqnceiihoiuj" path="res://Sprites/buttons/upp.png" id="4_cp375"]
@@ -32,7 +31,6 @@ layout_mode = 0
 offset_top = -1.0
 offset_right = 127.0
 offset_bottom = 127.0
-texture = ExtResource("1_0aj2d")
 
 [node name="Slot1" type="TextureRect" parent="TextureRect"]
 layout_mode = 0

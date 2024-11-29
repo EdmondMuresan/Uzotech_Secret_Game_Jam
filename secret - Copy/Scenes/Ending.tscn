@@ -1,0 +1,94 @@
+[gd_scene load_steps=18 format=3 uid="uid://bklnpe1sr03hr"]
+
+[ext_resource type="Texture2D" uid="uid://cq40xqc8u0bml" path="res://Sprites/guarddoganimation/1d.png" id="1_c1dfj"]
+[ext_resource type="Script" path="res://Scripts/texture_rect.gd" id="2_27ewb"]
+[ext_resource type="Texture2D" uid="uid://d1p7lot6br4b4" path="res://Sprites/guarddoganimation/2d.png" id="3_ecc42"]
+[ext_resource type="Texture2D" uid="uid://dyygggvntit6" path="res://Sprites/guarddoganimation/3d.png" id="4_mxkgh"]
+[ext_resource type="Texture2D" uid="uid://curp165hd5o81" path="res://Sprites/guarddoganimation/4d.png" id="5_dowuq"]
+[ext_resource type="Texture2D" uid="uid://ktgpou2n0dgm" path="res://Sprites/mouse_death_animation/MouseDeath5.png" id="6_60cdt"]
+[ext_resource type="Texture2D" uid="uid://b6xtbvx4fq40r" path="res://Sprites/mouse_death_animation/MouseDeath2.png" id="7_xgtxa"]
+[ext_resource type="Texture2D" uid="uid://ccpf28aicyhu4" path="res://Sprites/mouse_death_animation/MouseDeath3.png" id="8_wb8rn"]
+[ext_resource type="Texture2D" uid="uid://0br4ul13381y" path="res://Sprites/mouse_death_animation/MouseDeath4.png" id="9_6vmur"]
+[ext_resource type="Texture2D" uid="uid://bvlb6rbtpbtdq" path="res://Sprites/mouse_death_animation/MouseDeath6.png" id="10_387mg"]
+[ext_resource type="Texture2D" uid="uid://0xsoq5un4ewv" path="res://Sprites/mouse_death_animation/MouseDeath7.png" id="11_j4eki"]
+[ext_resource type="Texture2D" uid="uid://cc0tg36moh7dg" path="res://Sprites/mouse_death_animation/MouseDeath8.png" id="12_y7xkj"]
+[ext_resource type="Texture2D" uid="uid://da3xj4ia72pve" path="res://Sprites/mouse_death_animation/MouseDeath9.png" id="13_tbwtw"]
+
+[sub_resource type="Animation" id="Animation_tas5g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_c1dfj")]
+}
+
+[sub_resource type="Animation" id="Animation_tgdfy"]
+resource_name = "wolf"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.633333, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_c1dfj"), ExtResource("3_ecc42"), ExtResource("4_mxkgh"), ExtResource("5_dowuq"), ExtResource("1_c1dfj")]
+}
+
+[sub_resource type="Animation" id="Animation_28s0b"]
+resource_name = "mouse"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("6_60cdt"), ExtResource("7_xgtxa"), ExtResource("8_wb8rn"), ExtResource("9_6vmur"), ExtResource("6_60cdt"), ExtResource("10_387mg"), ExtResource("11_j4eki"), ExtResource("12_y7xkj"), ExtResource("13_tbwtw")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ioboe"]
+_data = {
+"RESET": SubResource("Animation_tas5g"),
+"mouse": SubResource("Animation_28s0b"),
+"wolf": SubResource("Animation_tgdfy")
+}
+
+[node name="DeathMovie" type="TextureRect"]
+z_index = 12
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.5
+offset_top = -101.0
+offset_right = 160.5
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_c1dfj")
+script = ExtResource("2_27ewb")
+selected_animation = "mouse"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ioboe")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
