@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://7nasmdpjpl6r"]
+[gd_scene load_steps=12 format=3 uid="uid://7nasmdpjpl6r"]
 
 [ext_resource type="Texture2D" uid="uid://d35nnt4w03kqp" path="res://Sprites/Tiles_and_ui/Tileset.png" id="1_kwd2i"]
 [ext_resource type="Texture2D" uid="uid://bi8c0gpo0tpj1" path="res://Sprites/Tiles_and_ui/Symbolst.png" id="2_eo3in"]
 [ext_resource type="Script" path="res://Scripts/node.gd" id="3_6n0x7"]
 [ext_resource type="Texture2D" uid="uid://2j72yuqv6rcf" path="res://Sprites/symbols/0.png" id="3_bplev"]
-[ext_resource type="Texture2D" uid="uid://do6c6njpn726c" path="res://Sprites/Tiles_and_ui/frame.png" id="5_h15nq"]
+[ext_resource type="Texture2D" uid="uid://bp5us4qlcohjl" path="res://Sprites/Tiles_and_ui/frame-filled.png" id="5_irjs6"]
+[ext_resource type="Script" path="res://Scenes/tile_piece.gd" id="5_kto5k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lob3w"]
 texture = ExtResource("1_kwd2i")
@@ -282,6 +283,9 @@ sources/0 = SubResource("TileSetAtlasSource_lob3w")
 sources/1 = SubResource("TileSetAtlasSource_sas7i")
 sources/2 = SubResource("TileSetAtlasSource_f1gye")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uow40"]
+size = Vector2(14, 12)
+
 [node name="Code" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -299,48 +303,104 @@ layer_2/z_index = 7
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("3_6n0x7")
-code = 1
 
 [node name="1" type="Sprite2D" parent="Node"]
 position = Vector2(167, 234)
 texture = ExtResource("3_bplev")
 region_enabled = true
 region_rect = Rect2(0, 0, 14, 12.6)
+script = ExtResource("5_kto5k")
+my_name = 1
+
+[node name="Area2D" type="Area2D" parent="Node/1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/1/Area2D"]
+shape = SubResource("RectangleShape2D_uow40")
 
 [node name="2" type="Sprite2D" parent="Node"]
 position = Vector2(181, 234)
 texture = ExtResource("3_bplev")
 region_enabled = true
 region_rect = Rect2(14, 0, 14, 12.6)
+script = ExtResource("5_kto5k")
+my_name = 2
+
+[node name="Area2D" type="Area2D" parent="Node/2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/2/Area2D"]
+shape = SubResource("RectangleShape2D_uow40")
 
 [node name="3" type="Sprite2D" parent="Node"]
 position = Vector2(167, 246)
 texture = ExtResource("3_bplev")
 region_enabled = true
 region_rect = Rect2(0, 12.6, 14, 12.6)
+script = ExtResource("5_kto5k")
+my_name = 3
+
+[node name="Area2D" type="Area2D" parent="Node/3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/3/Area2D"]
+shape = SubResource("RectangleShape2D_uow40")
 
 [node name="4" type="Sprite2D" parent="Node"]
 position = Vector2(181, 246)
 texture = ExtResource("3_bplev")
 region_enabled = true
 region_rect = Rect2(14, 12.6, 14, 12.6)
+script = ExtResource("5_kto5k")
+my_name = 4
+
+[node name="Area2D" type="Area2D" parent="Node/4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/4/Area2D"]
+shape = SubResource("RectangleShape2D_uow40")
 
 [node name="5" type="Sprite2D" parent="Node"]
 position = Vector2(167, 258)
 texture = ExtResource("3_bplev")
 region_enabled = true
 region_rect = Rect2(0, 25.2, 14, 12.6)
+script = ExtResource("5_kto5k")
+my_name = 5
+
+[node name="Area2D" type="Area2D" parent="Node/5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/5/Area2D"]
+shape = SubResource("RectangleShape2D_uow40")
 
 [node name="6" type="Sprite2D" parent="Node"]
 position = Vector2(181, 258)
 texture = ExtResource("3_bplev")
 region_enabled = true
 region_rect = Rect2(14, 25.2, 14, 12.6)
+script = ExtResource("5_kto5k")
+my_name = 6
+
+[node name="Area2D" type="Area2D" parent="Node/6"]
+position = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/6/Area2D"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_uow40")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(187, 252)
 zoom = Vector2(5.105, 5.105)
 
 [node name="Frame" type="Sprite2D" parent="."]
-position = Vector2(174, 247)
-texture = ExtResource("5_h15nq")
+position = Vector2(174, 246)
+texture = ExtResource("5_irjs6")
+
+[connection signal="mouse_entered" from="Node/1/Area2D" to="Node/1" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Node/1/Area2D" to="Node/1" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Node/2/Area2D" to="Node/2" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Node/2/Area2D" to="Node/2" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Node/3/Area2D" to="Node/3" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Node/3/Area2D" to="Node/3" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Node/4/Area2D" to="Node/4" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Node/4/Area2D" to="Node/4" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Node/5/Area2D" to="Node/5" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Node/5/Area2D" to="Node/5" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Node/6/Area2D" to="Node/6" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Node/6/Area2D" to="Node/6" method="_on_area_2d_mouse_exited"]

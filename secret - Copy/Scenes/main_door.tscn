@@ -34,15 +34,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="MainDoor" type="Node2D"]
+[node name="MainDoor" type="Node2D" node_paths=PackedStringArray("player")]
 y_sort_enabled = true
 script = ExtResource("1_lpjhj")
+player = NodePath("Player")
 metadata/_edit_horizontal_guides_ = [0.0]
 
 [node name="TileMap" parent="." instance=ExtResource("2_88l7x")]
 
 [node name="Lock" type="Area2D" parent="."]
-position = Vector2(520, 312)
+position = Vector2(516, 320)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lock"]
 position = Vector2(5, -10)
@@ -57,6 +58,7 @@ frame_progress = 0.907748
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(149, 311)
+scale = Vector2(0.96, 1.16337)
 limit_smoothed = true
 position_smoothing_enabled = true
 editor_draw_limits = true
@@ -73,6 +75,7 @@ offset_bottom = -36.0
 scale = Vector2(0.479998, 0.479998)
 
 [node name="DeathMovie" parent="Camera2D" instance=ExtResource("6_foovc")]
+visible = false
 offset_left = -162.0
 offset_top = -108.0
 offset_right = 159.0
@@ -86,6 +89,7 @@ animation = NodePath("../Camera2D/DeathMovie")
 
 [node name="Player" parent="." instance=ExtResource("2_fp5ig")]
 position = Vector2(149, 311)
+scale = Vector2(0.96, 1.16337)
 SPEED = 150.0
 JUMP_VELOCITY = -300.0
 

@@ -53,7 +53,6 @@ func _on_idle_timer_timeout() -> void:
 func _on_detection_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	if area.is_in_group("Player"):
 		triggered=true
-		area.get_parent().can_move=false
 		animation_player.play("Triggered")
 		position_for_player=area.get_parent().position
 		print(position_for_player)

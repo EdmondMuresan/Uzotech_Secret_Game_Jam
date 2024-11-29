@@ -89,7 +89,7 @@ size = Vector2(7, 8)
 [node name="Node2D" type="CharacterBody2D" groups=["Player"]]
 z_index = 5
 z_as_relative = false
-collision_layer = 2
+collision_layer = 3
 script = ExtResource("1_x2hcb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -110,7 +110,6 @@ libraries = {
 autoplay = "idle"
 
 [node name="SurroundingDetector" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 68
 
