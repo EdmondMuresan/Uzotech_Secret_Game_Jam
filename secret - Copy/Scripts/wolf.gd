@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var idle_timer: Timer = $Idle_timer
 @onready var collision_shape_2d: CollisionShape2D = $Detection/CollisionShape2D
+
 @export var patrol_range := 120
 @export var speed = 100
 @export var my_parent:Node2D
@@ -13,6 +14,8 @@ var start_position: float
 var triggered:=false
 var move_direction
 var position_for_player:Vector2
+@onready var catch: AudioStreamPlayer = $catch
+
 func _ready() -> void:
 	direction = 1
 	sprite_2d.flip_h = false
@@ -57,4 +60,5 @@ func _on_detection_area_shape_entered(area_rid: RID, area: Area2D, area_shape_in
 		position_for_player=area.get_parent().position
 		print(position_for_player)
 		my_parent.death_animation()
+		catch.play()
 		move_direction = sign(position_for_player.x - position.x)

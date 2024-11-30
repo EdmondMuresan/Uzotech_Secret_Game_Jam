@@ -13,7 +13,8 @@ var near_ladder:=false
 @onready var visible_for_wolf: Area2D = $VisibleForWolf
 @onready var eye_closed: Sprite2D = $Eye_Closed
 @onready var dust: CPUParticles2D = $CPUParticles2D
-
+@onready var jump: AudioStreamPlayer = $jump
+ 
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor() and !near_ladder:
@@ -21,6 +22,7 @@ func _physics_process(delta: float) -> void:
 	if can_move:
 		if Input.is_action_just_pressed("jump") and is_on_floor() and !near_ladder:
 			velocity.y = JUMP_VELOCITY
+			jump.play()
 		if !is_on_floor():
 			animation_player.play("jump")
 			

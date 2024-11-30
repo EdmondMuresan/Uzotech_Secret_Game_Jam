@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dxd3pxvb0ied0"]
+[gd_scene load_steps=13 format=3 uid="uid://dxd3pxvb0ied0"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_x2hcb"]
 [ext_resource type="Texture2D" uid="uid://dug7oj2so80na" path="res://Sprites/Player/Player.png" id="2_4qxfr"]
 [ext_resource type="Texture2D" uid="uid://bkdmjpreqpase" path="res://Sprites/Player/eye_closed.png" id="3_qnfa3"]
+[ext_resource type="AudioStream" uid="uid://d1guy0gmsms26" path="res://Music/jump.wav" id="4_ojspn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r0cvk"]
 size = Vector2(7, 8)
@@ -147,6 +148,10 @@ gravity = Vector2(400, 0)
 angle_min = -87.3
 angle_max = 392.7
 color = Color(0.458824, 0.309804, 0.266667, 1)
+
+[node name="jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ojspn")
+bus = &"SFX"
 
 [connection signal="area_shape_entered" from="SurroundingDetector" to="." method="_on_surrounding_detector_area_shape_entered"]
 [connection signal="area_shape_exited" from="SurroundingDetector" to="." method="_on_surrounding_detector_area_shape_exited"]

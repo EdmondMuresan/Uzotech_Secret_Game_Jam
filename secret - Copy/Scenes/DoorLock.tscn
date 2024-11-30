@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgywmg3h07ttr"]
+[gd_scene load_steps=14 format=3 uid="uid://bgywmg3h07ttr"]
 
 [ext_resource type="Script" path="res://Scripts/door_lock.gd" id="1_i8bv3"]
 [ext_resource type="Texture2D" uid="uid://2j72yuqv6rcf" path="res://Sprites/symbols/0.png" id="2_u2kbd"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://jx0pu66b122b" path="res://Sprites/buttons/leftp.png" id="10_3c3nf"]
 [ext_resource type="Texture2D" uid="uid://c4jrpuiqw2hnb" path="res://Sprites/buttons/pick.png" id="11_ssp2n"]
 [ext_resource type="Texture2D" uid="uid://kvqwx564pj04" path="res://Sprites/buttons/pickp.png" id="12_ntw8y"]
+[ext_resource type="AudioStream" uid="uid://btcm0j04ep6by" path="res://Music/lock_click.wav" id="13_if27w"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -106,6 +107,10 @@ texture_hover = ExtResource("12_ntw8y")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(60, 93)
 zoom = Vector2(3.305, 3.305)
+
+[node name="lock_click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_if27w")
+bus = &"SFX"
 
 [connection signal="pressed" from="Up" to="." method="_on_up_pressed"]
 [connection signal="pressed" from="Down" to="." method="_on_down_pressed"]

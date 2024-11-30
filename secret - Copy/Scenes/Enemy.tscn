@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dnngo01qchd8e"]
+[gd_scene load_steps=10 format=3 uid="uid://dnngo01qchd8e"]
 
 [ext_resource type="Texture2D" uid="uid://cutcexmta2r8e" path="res://Sprites/Enemies/Enemies.png" id="1_fkdvw"]
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_wltke"]
+[ext_resource type="AudioStream" uid="uid://pjaonoyyidn4" path="res://Music/rat.wav" id="3_7268t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l0uwl"]
 atlas = ExtResource("1_fkdvw")
@@ -62,5 +63,9 @@ target_position = Vector2(11, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 target_position = Vector2(-12, 0)
+
+[node name="rat_attack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7268t")
+bus = &"SFX"
 
 [connection signal="body_entered" from="Killzone" to="." method="_on_killzone_body_entered"]

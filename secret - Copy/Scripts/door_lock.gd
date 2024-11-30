@@ -3,6 +3,8 @@ extends Control
 @onready var slot_2: TextureRect = $TextureRect/Slot2
 @onready var slot_3: TextureRect = $TextureRect/Slot3
 @onready var texture_rect: TextureRect = $TextureRect
+@onready var lock_click: AudioStreamPlayer = $lock_click
+
 var first:int
 var second:int
 var third:int
@@ -60,8 +62,10 @@ func _on_up_pressed() -> void:
 	var index=int(current_slot.texture.resource_path[-5])
 	current_slot.texture=symbols[index-1]
 	print(current_slot.texture.resource_path[-5])
+	lock_click.play()
 	
 func _on_down_pressed() -> void:
+	lock_click.play()
 	print(current_slot)
 	 # Replace with function body.
 	var index=int(current_slot.texture.resource_path[-5])
@@ -77,12 +81,14 @@ func _on_pick_pressed() -> void:
 	second=int(slot_2.texture.resource_path[-5])
 	third=int(slot_3.texture.resource_path[-5])
 	print(str(first)+" "+str(second)+" "+str(third))
+	lock_click.play()
 	var my_combination=first*100+second*10+third
 	if my_combination==answer:
 		print("You won!")
 	else:
 		print("Try again!")
 func _on_right_button_down() -> void:
+	lock_click.play()
 	if current_slot==slot_1:
 		current_slot=slot_2
 		texture_rect.texture=DOORCODE_2
@@ -98,6 +104,7 @@ func _on_right_button_down() -> void:
 
 
 func _on_left_button_down() -> void:
+	lock_click.play()
 	if current_slot==slot_1:
 		current_slot=slot_3
 		texture_rect.texture=DOORCODE_3

@@ -5,6 +5,8 @@ const SPEED = 60
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var rat_attack: AudioStreamPlayer = $rat_attack
+
 
 var direction = 1
 
@@ -28,4 +30,5 @@ func _process(delta: float) -> void:
 func _on_killzone_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		var my_parent=get_parent()
+		rat_attack.play()
 		my_parent.death_animation()
