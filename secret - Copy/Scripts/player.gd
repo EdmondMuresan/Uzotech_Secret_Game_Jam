@@ -1,13 +1,12 @@
 extends CharacterBody2D
 
-
 @export var SPEED = 300.0
 @export var JUMP_VELOCITY = -400.0
 
 var near_ladder:=false
 
-@export var can_move=true
-@export var running = false
+var can_move = true
+var running = false
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -19,9 +18,20 @@ var near_ladder:=false
 @onready var bush: AudioStreamPlayer = $bush
 @onready var footsteps: AudioStreamPlayer = $footsteps
 
+var was_was_on_floor = false
+var was_on_floor = false
 func _physics_process(delta: float) -> void:
+	if not was_on_floor:
+		footsteps.stop()
+	elif not was_was_on_floor and running:
+		footsteps.play()
+	
+	was_was_on_floor = was_on_floor
+	was_on_floor = is_on_floor()
+	
 	if not is_on_floor() and !near_ladder:
 		velocity += get_gravity() * delta
+	
 	if can_move:
 		if Input.is_action_just_pressed("jump") and is_on_floor() and !near_ladder:
 			velocity.y = JUMP_VELOCITY
@@ -63,6 +73,7 @@ func _physics_process(delta: float) -> void:
 		animation_player.play("RESET")
 	
 	move_and_slide()
+	was_on_floor = is_on_floor()
 
 func _on_surrounding_detector_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Ladder"):

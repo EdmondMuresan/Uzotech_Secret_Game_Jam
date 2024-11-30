@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var code_tiles_parent = $"Frame/Code"
 @onready var full_symbol = $"FullSymbol"
+@onready var tile_moved_sound = $"Frame/StoneBlockMoved"
+@onready var timer = $"Timer"
 
 var symbol_number = 0
 var num_segments = Vector2i(3, 3)
@@ -57,6 +59,13 @@ func setup_code_tiles():
 	
 	full_symbol.texture = texture
 	code_tiles_parent.connect("solved", puzzle_solved)
+	
+	timer.connect("timeout", func(): tile_moved_sound.stop())
+	code_tiles_parent.connect("tile_moved", play_sound)
+
+func play_sound():
+	timer.start()
+	tile_moved_sound.play()
 
 func puzzle_solved():
 	full_symbol.visible = true

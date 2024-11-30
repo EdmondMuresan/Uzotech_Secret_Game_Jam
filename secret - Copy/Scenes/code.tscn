@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://7nasmdpjpl6r"]
+[gd_scene load_steps=11 format=3 uid="uid://7nasmdpjpl6r"]
 
 [ext_resource type="Script" path="res://Scenes/code.gd" id="1_1oo42"]
 [ext_resource type="Texture2D" uid="uid://d35nnt4w03kqp" path="res://Sprites/Tiles_and_ui/Tileset.png" id="1_kwd2i"]
 [ext_resource type="Texture2D" uid="uid://bi8c0gpo0tpj1" path="res://Sprites/Tiles_and_ui/Symbolst.png" id="2_eo3in"]
 [ext_resource type="Script" path="res://Scripts/code_tiles.gd" id="4_6r5v2"]
 [ext_resource type="Texture2D" uid="uid://bp5us4qlcohjl" path="res://Sprites/Tiles_and_ui/frame-filled.png" id="5_irjs6"]
+[ext_resource type="AudioStream" uid="uid://ctdxcm6880hso" path="res://Music/code.wav" id="6_vyuqc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lob3w"]
 texture = ExtResource("1_kwd2i")
@@ -305,5 +306,12 @@ texture = ExtResource("5_irjs6")
 [node name="Code" type="Node2D" parent="Frame"]
 script = ExtResource("4_6r5v2")
 
+[node name="StoneBlockMoved" type="AudioStreamPlayer" parent="Frame"]
+stream = ExtResource("6_vyuqc")
+
 [node name="FullSymbol" type="Sprite2D" parent="."]
 visible = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true

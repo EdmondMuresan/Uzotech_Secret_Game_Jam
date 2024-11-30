@@ -3,6 +3,8 @@ extends Node2D
 ## called when a solution was found
 ## you might want to set enabled to false; to not handle any more click events
 signal solved()
+signal tile_moved()
+signal tile_arrived()
 
 ## whether or not to handle clicks on children
 @export var enabled = true
@@ -104,6 +106,8 @@ func child_clicked(event: InputEvent, idx: int):
 	var child = current[child_idx]
 	current[child_idx] = null
 	current[hole_idx] = child
+	
+	emit_signal("tile_moved")
 	
 	# retarded gdscript by-value array equality test
 	if current.hash() == solution.hash():
