@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://cnqslckg6q2k2"]
+
+[ext_resource type="Script" path="res://Scripts/code_tiles.gd" id="1_6ru6p"]
+[ext_resource type="Texture2D" uid="uid://2j72yuqv6rcf" path="res://Sprites/symbols/0.png" id="2_xr23y"]
+[ext_resource type="Texture2D" uid="uid://bxyar8apoiupk" path="res://Sprites/symbols/1.png" id="3_q0d63"]
+[ext_resource type="Texture2D" uid="uid://5eti725apw2x" path="res://Sprites/symbols/2.png" id="4_rd3yt"]
+[ext_resource type="Texture2D" uid="uid://b305vixxqy182" path="res://Sprites/symbols/3.png" id="5_7f0mk"]
+[ext_resource type="Texture2D" uid="uid://dqutnvxbxn1ad" path="res://Sprites/symbols/4.png" id="6_x8511"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h376t"]
+size = Vector2(28, 38)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="CodeTest" type="Node2D" parent="."]
+script = ExtResource("1_6ru6p")
+sprites_per_row = 3
+solution = [null, 1, 2, 0, 3, 4]
+sprite_size = Vector2(28, 38)
+
+[node name="0" type="Area2D" parent="CodeTest"]
+
+[node name="Sprite2D" type="Sprite2D" parent="CodeTest/0"]
+texture = ExtResource("2_xr23y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CodeTest/0"]
+shape = SubResource("RectangleShape2D_h376t")
+
+[node name="1" type="Area2D" parent="CodeTest"]
+
+[node name="Sprite2D" type="Sprite2D" parent="CodeTest/1"]
+texture = ExtResource("3_q0d63")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CodeTest/1"]
+shape = SubResource("RectangleShape2D_h376t")
+
+[node name="2" type="Area2D" parent="CodeTest"]
+
+[node name="Sprite2D" type="Sprite2D" parent="CodeTest/2"]
+texture = ExtResource("4_rd3yt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CodeTest/2"]
+shape = SubResource("RectangleShape2D_h376t")
+
+[node name="3" type="Area2D" parent="CodeTest"]
+
+[node name="Sprite2D" type="Sprite2D" parent="CodeTest/3"]
+texture = ExtResource("5_7f0mk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CodeTest/3"]
+shape = SubResource("RectangleShape2D_h376t")
+
+[node name="4" type="Area2D" parent="CodeTest"]
+
+[node name="Sprite2D" type="Sprite2D" parent="CodeTest/4"]
+texture = ExtResource("6_x8511")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CodeTest/4"]
+shape = SubResource("RectangleShape2D_h376t")
